@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <%- include('../partials/head') %>
+  <body class="container-fluid">
+
+    <%- include('../partials/header') %>
+
+    <main class="container justify-content-center">
+      <div class="row">
+        <div class="col-12">
+          <h1><%= title %></h1>
+        </div>
+      </div>
+      <form action="/pizzas/<%= pizza.id %>?_method=PUT" method="post">
+        <div class="form-group">
+          <label for="sabor">Sabor</label>
+          <input required type="text" name="sabor" id="sabor" value="<%= pizza.sabor %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="ingredientes">Ingredientes</label>
+          <input required type="text" name="ingredientes" id="ingredientes" value="<%= pizza.ingredientes %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="preco">Custo</label>
+          <input required type="text" name="preco" id="preco" value="<%= pizza.preco %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="tempo">Tempo de preparo</label>
+          <input required type="number" name="tempo" id="tempo" value="<%= pizza.tempo %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <a href="/pizzas" role="button" class="btn btn-info">Cancelar e voltar</a>
+          <button type="submit" class="btn btn-success">Confirmar</button>
+        </div>
+
+      </form>
+    </main>
+
+    <%- include('../partials/footer')  %>
+    <%- include('../partials/scripts') %>
+  </body>
+</html>

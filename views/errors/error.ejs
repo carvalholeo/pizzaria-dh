@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head') %>
+
+<body>
+  <main class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-10">
+        <h1 class="mb-2"><%= message %></h1>
+        <p class="mb-4">Aconteceu um erro no sistema, com o código <%= error.status %>.</p>
+
+        <% if (error) { %>
+
+        <p>Abaixo, tem uma visão da pilha de exceção que ocorreu</p>
+        <pre class="pre-scrollable"><%= error.stack %></pre>
+
+        <% } %>
+
+      </div>
+    </div>
+  </main>
+  <%- include('../partials/footer')  %>
+  <%- include('partials/scripts') %>
+</body>
+
+</html>

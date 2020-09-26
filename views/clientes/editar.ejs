@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <%- include('../partials/head') %>
+  <body class="container-fluid">
+
+    <%- include('../partials/header') %>
+
+    <main class="container justify-content-center">
+      <div class="row">
+        <div class="col-12">
+          <h1><%= title %></h1>
+        </div>
+      </div>
+      <form action="/clientes/<%= cliente.id %>?_method=PUT" method="post">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input required type="text" name="nome" id="nome" value="<%= cliente.nome %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input required type="text" name="email" id="email" value="<%= cliente.email %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp</label>
+          <input required type="text" name="whatsapp" id="whatsapp" value="<%= cliente.whatsapp %>" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input required type="number" name="cpf" id="cpf" value="<%= cliente.cpf %>" class="form-control">
+        </div>
+
+        <label>CPF na Nota Fiscal?
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="cpf_sim" name="cpf_na_nota" value="1" checked class="custom-control-input">
+            <label class="custom-control-label" for="cpf_sim">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="cpf_nao" name="cpf_na_nota" value="0" class="custom-control-input">
+            <label class="custom-control-label" for="cpf_nao">Não</label>
+          </div>
+        </label>
+
+        <div class="form-group">
+          <a href="/clientes" role="button" class="btn btn-info">Cancelar e voltar</a>
+          <button type="submit" class="btn btn-success">Confirmar</button>
+        </div>
+
+      </form>
+    </main>
+
+    <%- include('../partials/footer')  %>
+    <%- include('../partials/scripts') %>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <%- include('../partials/head') %>
+  <body class="container-fluid">
+
+    <%- include('../partials/header') %>
+
+    <main class="container justify-content-center">
+      <div class="row">
+        <div class="col-12">
+          <h1><%= title %></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+          <% if (clientes.length > 0) { %>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">WhatsApp</th>
+                    <th scope="col">CPF na nota?</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% clientes.forEach(cliente => { %>
+                    <tr>
+                      <th scope="row"><%= cliente.id %></th>
+                      <td><%= cliente.nome %></td>
+                      <td><%= cliente.email %></td>
+                      <td><%= cliente.whatsapp %></td>
+                      <td><%= cliente.cpf_na_nota === 1 ? 'Sim' : 'Não' %></td>
+                      <td>
+                        <form action="/clientes/<%= cliente.id %>?_method=DELETE" method="post" class="">
+                          <a href="/clientes/<%= cliente.id %>" role="button" class="btn btn-info btn-sm badge-pill">Editar</a>
+                          <button class="btn btn-danger badge-pill btn-sm">Apagar</button>
+                        </form>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          <% } else { %>
+
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">ÁGUA COCA LATÃO. MARY, MARY JANE. PA GRINGO É MAIS CARO.</p>
+              <footer class="blockquote-footer">Aristóteles em <cite title="TikTok">TikTok</cite></footer>
+            </blockquote>
+
+          <% } %>
+          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#novoClienteModal">
+            Criar cliente
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal fade" tabindex="-1" id="novoClienteModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Cadastrar novo cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Coloque as informações da novo cliente.</p>
+
+            <form action="/clientes/" method="post">
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input required type="text" name="nome" id="nome" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input required type="email" name="email" id="email" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="whatsapp">WhatsApp</label>
+                <input required type="text" name="whatsapp" id="whatsapp" class="form-control" maxlength="20">
+              </div>
+
+              <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input required type="string" name="cpf" id="cpf" class="form-control" maxlength="11">
+              </div>
+
+              <label>CPF na Nota Fiscal?
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="cpf_sim" name="cpf_na_nota" value="1" checked class="custom-control-input">
+                  <label class="custom-control-label" for="cpf_sim">Sim</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="cpf_nao" name="cpf_na_nota" value="0" class="custom-control-input">
+                  <label class="custom-control-label" for="cpf_nao">Não</label>
+                </div>
+              </label>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar e voltar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../partials/footer')  %>
+    <%- include('../partials/scripts') %>
+  </body>
+</html>
